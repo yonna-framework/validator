@@ -19,3 +19,38 @@ validator 协助你处理数据校验
 ##### 可以通过git下载：`git clone https://github.com/yonna-framework/validator.git`
 
 > Yonna demo：[GOTO yonna](https://github.com/yonna-framework/yonna)
+
+#### array
+```php
+<?php
+use Yonna\Validator\ArrayValidator;
+
+ArrayValidator::required($this->input(), ['uid', 'login_name'], function ($error) {
+    Exception::params($error);
+});
+
+ArrayValidator::integer($this->input(), ['qty', 'views'], 0, 10000, function ($error) {
+    Exception::params($error);
+});
+
+ArrayValidator::multiple(
+    $this->input(),
+    [
+        'uid' => [
+            'required' => true,
+        ],
+        'quantity' => [
+            'type' => 'int',
+            'min' => 1,
+            'max' => 10,
+        ],
+        'some_list' => [
+            'type' => 'array',
+        ],
+    ],
+    function ($error) {
+        Exception::params($error);
+    }
+);
+?>
+```

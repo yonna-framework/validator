@@ -4,7 +4,7 @@ namespace Yonna\Validator;
 
 use Closure;
 
-abstract class AbstractChecker
+abstract class AbstractValidator
 {
 
     private $error = [];
